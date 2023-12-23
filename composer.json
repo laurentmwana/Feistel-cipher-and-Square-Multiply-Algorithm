@@ -1,0 +1,12 @@
+{
+    "name": "labeya/feistel",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/func.php"
+        ]
+    },
+    "require": {}
+}
