@@ -1,5 +1,6 @@
 <?php
 
+use App\Handle\Crypt;
 use App\Handle\Generator;
 use App\Helper\Form;
 use App\Helper\Session;
@@ -13,14 +14,22 @@ if (!empty($_POST)) {
     $validator = (new Validator($_POST))->required(['n'])->regex('n', '/^[01]{8}$/', '0-1');
     $errors = $validator->errors;
     if ($validator->isValid()){
-        $crypt = (new Generator($_POST['g-message'], (int)$_POST['g-order-1'], (int)$_POST['g-order-2']))
+        $crypt = (new Crypt($_POST['n'], $keys))
             ->apply();
     } 
 }
 
+if (isset($_GET['delete-key'])) {
+    // on supprime les clés
+    Session::delete('keys');
+    // on recharge la page
+    redirect('/crypt');
+}
 
 $form = new Form($_POST, $errors);
 ?>
+<?php if (!empty($keys)): ?>
+
 <div class="mb">
     <h2 class="h-title">Chiffrement</h2>
     <p class="h-para">
@@ -31,8 +40,9 @@ $form = new Form($_POST, $errors);
     Les clés générées : <strong><?= separator($keys) ?></strong>
 </div>
 <div class="mb">
-<a href="" class="link">supprimer la clé</a>
+    <a href="<?= generateUrl('/crypt', ['delete-key' => true]) ?>" class="link">Supprimer la clé</a>
 </div>
+<?php endif ?>
 
 <?php if (!empty($keys)): ?>
 <form action="" method="post" class="form">
@@ -48,7 +58,7 @@ $form = new Form($_POST, $errors);
     <?php endif ?>
 </form>
 <?php else: ?>
-    <div class="warning">
+    <div class="warning mt" style="margin-top: 50px;">
         Pour Chiffrer un message binaire avec cet algorithme, vous devez d'abord, commencer par <a href="<?= generateUrl('/generator') ?>">générer les clés</a>
     </div>
 <?php endif; ?>

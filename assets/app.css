@@ -203,3 +203,10 @@ a.button {
 .link:hover {
     text-decoration: underline;
 }
+
+.warning {
+    padding: 10px;
+    border-left: 8px solid #F7DC6F;
+    font-size: 15px;
+    background-color: var(--background);
+}
