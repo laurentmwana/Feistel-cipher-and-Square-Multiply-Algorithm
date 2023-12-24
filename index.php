@@ -14,8 +14,12 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'header.php';
 
 if ($url === '/') {
     require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'home.php';
-} elseif ($url === '/algorithm') {
-    require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'algorithm.php';
+} elseif ($url === '/generator') {
+    require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'generator.php';
+} elseif ($url === '/crypt') {
+    require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'crypt.php';
+}elseif ($url === '/decrypt') {
+    require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'decrypt.php';
 } else {
     require __DIR__ . DIRECTORY_SEPARATOR . 'links' . DIRECTORY_SEPARATOR . 'error.php';
 }

@@ -2,6 +2,7 @@
 
 use App\Handle\Generator;
 use App\Helper\Form;
+use App\Helper\Session;
 use App\Helper\Validator;
 
 $keys = [];
@@ -20,8 +21,15 @@ if (!empty($_POST)) {
     } 
 }
 
-$form = new Form($_POST, $errors);
+if (isset($_POST['save'])){
+    // enregistrer la clé dans la session
+    Session::save('keys', $keys);
+    // on fait une redirection vers la page de chiffrement
+    // sachant que pour chiffrement, on aura besoin de k1, k2 qui sont enregistrées dans la session
+    redirect('/crypt', ['to-generator' => true]);
+}
 
+$form = new Form($_POST, $errors);
 ?>
 <div class="mb">
     <h2 class="h-title">Génération de clé</h2>
@@ -41,9 +49,12 @@ $form = new Form($_POST, $errors);
             <?= $form->input('Ordre de décalage pour K2', 'g-order-2', ['type' => 'number'])  ?>
         </div>
     </div>
-    <?= $form->button('Générer', ['type' => 'submit'])  ?>
-
-    <div class="output">
+    <?= $form->button('Générer', ['type' => 'submit', 'class' => 'button'])  ?>
+    <?php if (!empty($keys)): ?>
+    <div class="output mb">
         clé générée : <strong><?= separator($keys) ?></strong>
     </div>
+    <?= $form->button('Enregistrer la clé', ['class' => 'button', 'name' => 'save'])  ?>
+    <?php endif ?>
 </form>
+

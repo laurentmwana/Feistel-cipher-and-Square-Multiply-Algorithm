@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +9,9 @@
 <body>
     <div class="header">
         <?= url('Documentation', '/') ?>
-        <?= url('Algorithme', '/algorithm') ?>
-        <?= url('Aide', '/help') ?>
+        <?= url('Génération de clé', '/generator') ?>
+        <?= url('Chiffrement', '/crypt') ?>
+        <?= url('Déchiffrement', '/decrypt') ?>
     </div>
     <div class="noel"></div>
     <div class="container mt">

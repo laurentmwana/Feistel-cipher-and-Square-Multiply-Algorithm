@@ -90,3 +90,15 @@ function separator(array $array) : ?string {
     }
     return join(' , ', $separators);
 }
+
+/**
+ * @param string $path
+ * @param array $params
+ * @return void
+ */
+function redirect(string $path, array $params = []): void
+{
+    $query = empty($params) ? null : '?'. http_build_query($params);
+    header("Location: {$path}{$query}", true, 301);
+    exit();
+}
