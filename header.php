@@ -9,8 +9,8 @@
 <body>
     <div class="header">
         <?= url('Documentation', '/') ?>
-        <?= url('Générer', '/generate-key') ?>
-        <?= url('chiffrement', '/algorithm-crypt') ?>
-        <?= url('déchiffrement', '/algorithm-decrypt') ?>
+        <?= url('Algorithme', '/algorithm') ?>
+        <?= url('Aide', '/help') ?>
     </div>
+    <div class="noel"></div>
     <div class="container mt">
